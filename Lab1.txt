@@ -1,0 +1,38 @@
+Chaskarandeep Singh
+Lab #01
+5/14/2015
+
+Compiler chosen: Tiny C compiler:
+
+scan/tokenize/lexical: I choose tccoff.c as an example of scanner. Following is the functionality:
+
+   // find a file symbol, copy it over
+   // then scan the whole symbol list and copy any function
+   // symbols that match the file association
+
+Parse: I choose tccpp.c as an example. It check the syntax of the source code
+
+AST: I didn't find anything.
+
+Optimization: I didn't find anything.
+
+Code generation: Traverse the AST to generate code. Following is the associated examples:
+
+I386_FILES = $(CORE_FILES) i386-gen.c i386-asm.c i386-asm.h
+84	WIN32_FILES = $(CORE_FILES) i386-gen.c i386-asm.c i386-asm.h tccpe.c
+85	X86_64_FILES = $(CORE_FILES) x86_64-gen.c
+86	ARM_FILES = $(CORE_FILES) arm-gen.c
+
+I didn't find anything funny about the tiny C compiler but I did found something interesting about it.
+
+1)You can compile and execute C code everywhere, for example on rescue disks.
+2)Tiny C compiler generates optimized x86 code. No byte code overhead. Compile, 
+assemble and link about 7 times faster than 'gcc-00'.
+3)Any C dynamic library can be used directly.
+4)TCC includes an optional memory and bound checker. Bound
+checked code can be mixed freely with standard code. Therefore, it is safe.
+5)Compile and execute C source directly. No linking or assembly
+necessary. Full C preprocessor included.
+6)C script supported : just add '#!/usr/local/bin/tcc -run' at the first
+line of your C source, and execute it directly from the command
+line.
