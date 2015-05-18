@@ -1,6 +1,7 @@
 What does it mean for two sets to be disjoint?
 
-
+Elements are not shared. Each set has it's own unique elements. (No duplicates)
 
 What is the union of two sets?
 
+Collection of all the elements in two sets. Some elements might be shared among two sets. (duplicates)
