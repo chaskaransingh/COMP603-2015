@@ -105,18 +105,32 @@ class Program : public Container {
  * Read in the file by recursive descent.
  * Modify as necessary and add whatever functions you need to get things done.
  */
-void parse(fstream & file, Container * container) {
+void parse(fstream & file, Container * container) 
+{
     char c;
-    // How to peek at the next character
-    c = (char)file.peek();
-    // How to print out that character
-    cout << c;
-    // How to read a character from the file and advance to the next character
-    file >> c;
-    // How to print out that character
-    cout << c;
-    // How to insert a node into the container.
+	file >> c;
+	
+    if (c=='+' || c=='-' || c=='<' || c=='>' || c== ',' || c=='.')
+	{
     container->children.push_back(new CommandNode(c));
+	}
+	// How to peek at the next character
+    c = (char)file.peek();
+	
+	if(c=='[')
+	{
+		Loop my_loop;
+		parse(file, & my_loop);
+		container->children.push_back(new Loop(my_loop));
+		file >> c;
+	}
+	
+	c=(char)file.peek();
+	if(c=='+' || c=='-' || c=='<' || c=='>' || c== ',' || c=='.')
+	{
+		parse(file, container);
+	}
+    
 }
 
 /**
